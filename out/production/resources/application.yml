@@ -1,0 +1,9 @@
+server:
+    port: 8080
+    servlet:
+        contextPath: /resolveEnigma
+springfox:
+    documentation:
+        swagger:
+            v2:
+                path: /api-docs

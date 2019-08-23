@@ -1,0 +1,54 @@
+buildscript {
+    ext {
+        springbootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    baseName = 'resolve-enigma-controller'
+	version =  '1.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'co.com.bancolombia.service.resolveEnigma'
+version = '1.0.0'
+
+description = 'resolve-enigma-api'	
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.1.2.RELEASE'
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
+	compile 'io.springfox:springfox-swagger2:2.6.1'
+	compile group: 'javax.activation', name: 'activation', version: '1.1.1' // no vienen en versione superiores de java 8
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+
+    compile group: 'org.apache.camel', name: 'camel-spring-boot-starter', version: '2.22.2'
+    compile group: 'org.apache.camel', name: 'camel-http4', version: '2.22.2'
+    compile group: 'org.apache.camel', name: 'camel-freemarker', version: '2.22.2'
+    compile group: 'org.apache.camel', name: 'camel-jackson', version: '2.22.2'
+    compile group: 'org.apache.camel', name: 'camel-hystrix', version: '2.22.2'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'junit:junit:4.12','org.powermock:powermock-core:1.6.1','org.powermock:powermock-module-junit4:1.6.1','org.powermock:powermock-api-mockito:1.6.1'
+}
